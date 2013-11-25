@@ -1,0 +1,59 @@
+// reflect project main.go
+package main
+
+import (
+	"fmt"
+	"testing"
+)
+
+var (
+	fmap map[string]func(string, string) string
+	rmap map[string]func(interface{}, interface{}) string
+)
+
+func Init() {
+
+	testFunct := func(a, b string) string {
+		var result string
+		for i := 0; i < 100; i++ {
+			result += a + b
+		}
+		return result
+	}
+	testFunct1 := func(a, b interface{}) string {
+		var result string
+		for i := 0; i < 100; i++ {
+			result += a.(string) + b.(string)
+		}
+		return result
+	}
+
+	fmap = make(map[string]func(string, string) string)
+	rmap = make(map[string]func(interface{}, interface{}) string)
+	fmap["f1"] = testFunct
+	rmap["f1"] = testFunct1
+
+}
+
+func main() {
+	Init()
+	t1 := testing.B{}
+	t1.N = 10
+
+	bf := testing.Benchmark(BenchmarkF)
+	br := testing.Benchmark(BenchmarkR)
+
+	fmt.Println(bf, "\n", br)
+}
+
+func BenchmarkF(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		fmap["f1"]("n", "m")
+	}
+}
+
+func BenchmarkR(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		rmap["f1"]("n", "m")
+	}
+}
