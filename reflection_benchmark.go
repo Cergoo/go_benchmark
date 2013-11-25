@@ -43,7 +43,7 @@ func main() {
 	bf := testing.Benchmark(BenchmarkF)
 	br := testing.Benchmark(BenchmarkR)
 
-	fmt.Println("origin:" bf, "\n", "type assert:",br)
+	fmt.Println("origin:", bf, "\n", "type assert:", br)
 }
 
 func BenchmarkF(b *testing.B) {
