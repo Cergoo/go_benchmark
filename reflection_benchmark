@@ -1,4 +1,4 @@
-// reflect project main.go
+// type assertion benchmark test
 package main
 
 import (
@@ -43,7 +43,7 @@ func main() {
 	bf := testing.Benchmark(BenchmarkF)
 	br := testing.Benchmark(BenchmarkR)
 
-	fmt.Println(bf, "\n", br)
+	fmt.Println("origin:" bf, "\n", "type assert:",br)
 }
 
 func BenchmarkF(b *testing.B) {
