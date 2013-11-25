@@ -36,6 +36,8 @@ func Init() {
 }
 
 func main() {
+	var pr float32
+
 	Init()
 	t1 := testing.B{}
 	t1.N = 10
@@ -43,7 +45,8 @@ func main() {
 	bf := testing.Benchmark(BenchmarkF)
 	br := testing.Benchmark(BenchmarkR)
 
-	fmt.Println("origin:", bf, "\n", "type assert:", br)
+	pr = float32(br.NsPerOp()) / float32(bf.NsPerOp()) * 100
+	fmt.Print("originu", bf, "\n", "type assert:", br, "\n", pr, "%", "\n")
 }
 
 func BenchmarkF(b *testing.B) {
