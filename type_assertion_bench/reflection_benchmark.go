@@ -7,29 +7,30 @@ import (
 )
 
 var (
-	fmap map[string]func(string, string) string
-	rmap map[string]func(interface{}, interface{}) string
+	fmap map[string]func(string, string, string, string) string
+	rmap map[string]func(interface{}, interface{}, interface{}, interface{}) string
 )
 
 func Init() {
 
-	testFunct := func(a, b string) string {
+	testFunct := func(a, b, c, d string) string {
 		var result string
 		for i := 0; i < 100; i++ {
-			result += a + b
+			result += a + b + c + d
 		}
 		return result
 	}
-	testFunct1 := func(a, b interface{}) string {
+	testFunct1 := func(a, b, c, d interface{}) string {
 		var result string
+		as, bs, cs, ds := a.(string), b.(string), c.(string), d.(string)
 		for i := 0; i < 100; i++ {
-			result += a.(string) + b.(string)
+			result += as + bs + cs + ds
 		}
 		return result
 	}
 
-	fmap = make(map[string]func(string, string) string)
-	rmap = make(map[string]func(interface{}, interface{}) string)
+	fmap = make(map[string]func(string, string, string, string) string)
+	rmap = make(map[string]func(interface{}, interface{}, interface{}, interface{}) string)
 	fmap["f1"] = testFunct
 	rmap["f1"] = testFunct1
 
@@ -51,12 +52,12 @@ func main() {
 
 func BenchmarkF(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		fmap["f1"]("n", "m")
+		fmap["f1"]("n", "m", "n", "m")
 	}
 }
 
 func BenchmarkR(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		rmap["f1"]("n", "m")
+		rmap["f1"]("n", "m", "n", "m")
 	}
 }

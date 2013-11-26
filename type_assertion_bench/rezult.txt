@@ -1,1 +1,1 @@
-12% loss time a type assertion operation vs native
+~1% loss time a type assertion operation vs native
