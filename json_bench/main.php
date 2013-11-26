@@ -35,10 +35,10 @@ $v1         = $v;
 $v['Itm13'] = &$v1;
 
 bench::start('1');
-for ($x = 0; $x < 1000; $x++) {
+for ($x = 0; $x < 10000; $x++) {
     $n = json_encode($v);
 }
 bench::stop('1');
 
 print_r($n);
-    ?>
+?>
