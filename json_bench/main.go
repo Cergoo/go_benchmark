@@ -83,3 +83,8 @@ func main() {
 	fmt.Println(b1, v.Itm_1, v1.Itm_1, "\n")
 
 }
+
+go  10000 op: 1.419 c
+php 10000 op: 0.2714 с
+523%
+
