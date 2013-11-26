@@ -1,18 +1,14 @@
 <?php
 
 class bench {
-
     private static $ArrayLabel;
-
     public static function start($Label) {
         self::$ArrayLabel[$Label] = microtime(true);
     }
-
     public static function stop($Label) {
         $delta = round(microtime(true) - self::$ArrayLabel[$Label], 4);
-        echo 'checkpoint_', $Label, '<br>time : ', $delta, ' сек.';
+        echo 'checkpoint_', $Label, '<br>time : ', $delta, 'sec';
     }
-
 }
 
 $v = [
@@ -30,7 +26,6 @@ $v = [
     'Itm12' => ['key1'  => true, 'key2'  => false, 'key3'  => true, 'key4'  => false, 'key5'  => true, 'key6'  => true, 'key7'  => false, 'key8'  => true, 'key9'  => false, 'key10' => true,],
     'Itm13' => [],
 ];
-
 $v1         = $v;
 $v['Itm13'] = &$v1;
 
@@ -39,6 +34,5 @@ for ($x = 0; $x < 10000; $x++) {
     $n = json_encode($v);
 }
 bench::stop('1');
-
 print_r($n);
 ?>
