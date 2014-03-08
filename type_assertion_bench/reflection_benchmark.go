@@ -16,7 +16,9 @@ func Init() {
 	testFunct := func(a, b, c, d string) string {
 		var result string
 		for i := 0; i < 100; i++ {
-			result += a + b + c + d
+			as, bs, cs, ds := a, b, c, d
+			result += as + bs + cs + ds
+
 		}
 		return result
 	}
@@ -45,7 +47,6 @@ func main() {
 
 	bf := testing.Benchmark(BenchmarkF)
 	br := testing.Benchmark(BenchmarkR)
-
 	pr = float32(br.NsPerOp()) / float32(bf.NsPerOp()) * 100
 	fmt.Print("originu", bf, "\n", "type assert:", br, "\n", pr, "%", "\n")
 }
