@@ -22,8 +22,8 @@ func Init() {
 	}
 	testFunct1 := func(a, b, c, d interface{}) string {
 		var result string
-		as, bs, cs, ds := a.(string), b.(string), c.(string), d.(string)
 		for i := 0; i < 100; i++ {
+			as, bs, cs, ds := a.(string), b.(string), c.(string), d.(string)
 			result += as + bs + cs + ds
 		}
 		return result

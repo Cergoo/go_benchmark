@@ -1,1 +1,4 @@
-~1% loss time a type assertion operation vs native
+originu:   		10000	    235939 ns/op
+type assert:    5000	    286647 ns/op
+121.49199%
+~20% loss time a type assertion operation vs native
